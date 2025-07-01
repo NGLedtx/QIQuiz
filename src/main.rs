@@ -1,6 +1,14 @@
 use tokio::net::TcpListener;
 
 mod app;
+mod configs;
+mod connections;
+mod entities;
+mod handlers;
+mod middlewares;
+mod routes;
+mod services;
+mod views;
 
 #[tokio::main]
 async fn main() {
