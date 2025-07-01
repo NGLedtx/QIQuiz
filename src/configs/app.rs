@@ -1,7 +1,7 @@
 use std::{env, sync::OnceLock};
 
-struct AppConfig {
-    port: u16,
+pub struct AppConfig {
+    pub port: u16,
 }
 
 static APP_CONFIG: OnceLock<AppConfig> = OnceLock::new();

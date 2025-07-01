@@ -12,9 +12,15 @@ mod views;
 
 #[tokio::main]
 async fn main() {
+    let port = configs::get_app_config().port;
+
     let app = app::create_app().await;
 
-    let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let listener = TcpListener::bind(format!("0.0.0.0:{}", port))
+        .await
+        .unwrap();
+
+    println!("Server listening on port {}", port);
 
     axum::serve(listener, app).await.unwrap();
 }
