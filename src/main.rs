@@ -12,6 +12,8 @@ mod views;
 
 #[tokio::main]
 async fn main() {
+    dotenvy::dotenv().ok();
+    
     let port = configs::get_app_config().port;
 
     let app = app::create_app().await;
