@@ -1,5 +1,8 @@
-use axum::{Router, routing::get};
+use axum::Router;
+
+use crate::{middlewares, routes};
 
 pub async fn create_app() -> Router {
-    Router::new().route("/", get(async || "Hello"))
+    routes::configure_routes()
+        .layer(middlewares::get_cors())
 }
