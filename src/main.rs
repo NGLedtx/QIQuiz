@@ -7,13 +7,14 @@ mod entities;
 mod handlers;
 mod middlewares;
 mod routes;
-mod services;
+mod state;
 mod views;
 
 #[tokio::main]
 async fn main() {
+    #[cfg(debug_assertions)]
     dotenvy::dotenv().ok();
-    
+
     let port = configs::get_app_config().port;
 
     let app = app::create_app().await;
