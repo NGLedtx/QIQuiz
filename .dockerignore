@@ -1,0 +1,6 @@
+target
+db.sqlite
+.dockerignore
+.env
+.gitignore
+README.md
