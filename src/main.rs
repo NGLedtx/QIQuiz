@@ -5,6 +5,7 @@ mod configs;
 mod connections;
 mod entities;
 mod handlers;
+mod jwt;
 mod middlewares;
 mod routes;
 mod state;
