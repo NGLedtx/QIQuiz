@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem dos Quizes</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    main {
+        height: 93dvh;
+    }
+</style>
+<body>
+    {% include "header_on.html" %}
+    <main>
+        <div>
+            <a href="/quiz/create">
+                <button>Criar Quiz</button>
+            </a>
+        </div>
+    </main>
+    {% if error.is_some() %}
+        {% if error.unwrap() %}
+            <h1>sucesso</h1>
+        {% endif %}
+        {% if !error.unwrap() %}
+            <h1>falha</h1>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

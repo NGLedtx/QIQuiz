@@ -3,7 +3,7 @@ use axum::{Form, response::Html};
 use serde::Deserialize;
 
 #[derive(Template)]
-#[template(path = "login.html")]
+#[template(path = "user/login.html")]
 struct MyTemplate {
     error: Option<String>,
 }

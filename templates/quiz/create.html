@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Quiz</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    main {
+        height: 93dvh;
+    }
+</style>
+<body>
+    {% include "header_on.html" %}
+    <main>
+        <form action="/api/quiz/create" method="post">
+            <input type="number" name="questions">
+            <select name="id_difficult">
+                {% for difficult in difficults %}
+                    <option value={{ difficult.id }}>{{ difficult.name }}</option>
+                {% endfor %}
+            </select>
+            <select name="id_category">
+                {% for category in categories %}
+                    <option value={{ category.id }}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+</body>
+</html>
