@@ -2,7 +2,7 @@
 
 pub mod alternative;
 pub mod category;
-pub mod difficult;
+pub mod difficulty;
 pub mod question;
 pub mod quiz;
 pub mod rank;

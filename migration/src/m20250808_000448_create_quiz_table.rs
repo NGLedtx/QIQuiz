@@ -2,7 +2,7 @@ use sea_orm_migration::prelude::*;
 
 use crate::{
     m20250808_000506_create_category_table::Category,
-    m20250808_000513_create_difficult_table::Difficult,
+    m20250808_000513_create_difficulty_table::Difficulty,
 };
 
 #[derive(DeriveMigrationName)]
@@ -36,12 +36,12 @@ impl MigrationTrait for Migration {
                             .from(Quiz::Table, Quiz::IdCategory)
                             .to(Category::Table, Category::Id),
                     )
-                    .col(ColumnDef::new(Quiz::IdDifficult).integer().not_null())
+                    .col(ColumnDef::new(Quiz::IdDifficulty).integer().not_null())
                     .foreign_key(
                         ForeignKey::create()
-                            .name("fk-quiz-difficult-id")
-                            .from(Quiz::Table, Quiz::IdDifficult)
-                            .to(Difficult::Table, Difficult::Id),
+                            .name("fk-quiz-difficulty-id")
+                            .from(Quiz::Table, Quiz::IdDifficulty)
+                            .to(Difficulty::Table, Difficulty::Id),
                     )
                     .to_owned(),
             )
@@ -61,5 +61,5 @@ pub enum Quiz {
     Id,
     Questions,
     IdCategory,
-    IdDifficult,
+    IdDifficulty,
 }

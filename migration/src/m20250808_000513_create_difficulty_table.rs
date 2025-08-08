@@ -9,15 +9,15 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(Difficult::Table)
+                    .table(Difficulty::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(Difficult::Id)
+                        ColumnDef::new(Difficulty::Id)
                             .integer()
                             .not_null()
                             .primary_key(),
                     )
-                    .col(ColumnDef::new(Difficult::Name).string().not_null())
+                    .col(ColumnDef::new(Difficulty::Name).string().not_null())
                     .to_owned(),
             )
             .await?;
@@ -25,8 +25,8 @@ impl MigrationTrait for Migration {
         manager
             .exec_stmt(
                 Query::insert()
-                    .into_table(Difficult::Table)
-                    .columns([Difficult::Id, Difficult::Name])
+                    .into_table(Difficulty::Table)
+                    .columns([Difficulty::Id, Difficulty::Name])
                     .values_panic([1.into(), "easy".into()])
                     .values_panic([2.into(), "medium".into()])
                     .values_panic([3.into(), "hard".into()])
@@ -39,13 +39,13 @@ impl MigrationTrait for Migration {
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         manager
-            .drop_table(Table::drop().table(Difficult::Table).to_owned())
+            .drop_table(Table::drop().table(Difficulty::Table).to_owned())
             .await
     }
 }
 
 #[derive(DeriveIden)]
-pub enum Difficult {
+pub enum Difficulty {
     Table,
     Id,
     Name,

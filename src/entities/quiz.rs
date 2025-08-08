@@ -9,7 +9,7 @@ pub struct Model {
     pub id: i32,
     pub questions: i32,
     pub id_category: i32,
-    pub id_difficult: i32,
+    pub id_difficulty: i32,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
@@ -23,13 +23,13 @@ pub enum Relation {
     )]
     Category,
     #[sea_orm(
-        belongs_to = "super::difficult::Entity",
-        from = "Column::IdDifficult",
-        to = "super::difficult::Column::Id",
+        belongs_to = "super::difficulty::Entity",
+        from = "Column::IdDifficulty",
+        to = "super::difficulty::Column::Id",
         on_update = "NoAction",
         on_delete = "NoAction"
     )]
-    Difficult,
+    Difficulty,
     #[sea_orm(has_many = "super::question::Entity")]
     Question,
     #[sea_orm(has_many = "super::rank::Entity")]
@@ -42,9 +42,9 @@ impl Related<super::category::Entity> for Entity {
     }
 }
 
-impl Related<super::difficult::Entity> for Entity {
+impl Related<super::difficulty::Entity> for Entity {
     fn to() -> RelationDef {
-        Relation::Difficult.def()
+        Relation::Difficulty.def()
     }
 }
 
