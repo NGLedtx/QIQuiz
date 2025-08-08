@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<style>
+    main {
+        height: 93dvh;
+    }
+</style>
+<body>
+    {% include "header_off.html" %}
+    <main>
+        <form action="/api/user/login" method="get">
+            <input type="text" name="user">
+            <input type="password" name="password">
+            <button type="submit">Submit</button>
+        </form>
+        {% if error.is_some() %}
+            <h1>Error</h1>
+        {% endif %}
+    </main>
+</body>
+</html>
