@@ -19,9 +19,17 @@
     {% include "header_off.html" %}
     <main>
         <form action="/api/user/login" method="get">
-            <input type="text" name="user">
-            <input type="password" name="password">
-            <button type="submit">Submit</button>
+            <div id="conatiner">
+                <div id="divname">
+                    <input type="text" name="user" placeholder="Digite seu nome...">
+                </div>
+                <div id="divsenha">
+                     <input type="password" name="password" placeholder="Digite uma senha">
+                </div>
+                <div id="divbutton">
+                    <button type="submit">Entrar</button>
+                </div>
+            </div>
         </form>
         {% if error.is_some() %}
             <h1>Error</h1>

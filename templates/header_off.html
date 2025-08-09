@@ -5,13 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
+    *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
     header {
-        height: 7dvh;
+        height: 10dvh;
+        display: flex;
+        background-color: #282828;
+        box-shadow: 0 3px 10px rgba(255, 255, 255, 0.1);
+        flex-direction: row;
+        align-items: center;
+       justify-content: space-between;
+       padding: 0 5dvh;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    a{
+        text-decoration: none;
+        color: whitesmoke   
+    }
+    h1{
+        font-size: 2rem;
+    }
+    button{
+        background-color: whitesmoke;
+        width: 10dvh;
+        height: 5dvh;
+        border: none;
+        border-radius: 0.3dvh;
+        cursor: pointer;
+        color: black;
+        font-size: 2.3dvh;
+    }
+    button:hover{
+        background-color: rgb(186, 186, 186);
     }
 </style>
 <body>
     <header>
-        <h1>Header</h1>
+        <h1><a href="/quiz/list.html">QIQuiz</a></h1>
+        <div id="btlogin">
+            <a href="user/login.html" target="_blank"><button>Entrar</button></a>
+        </div>
     </header>
 </body>
 </html>
