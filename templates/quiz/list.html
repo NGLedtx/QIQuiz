@@ -23,14 +23,14 @@
                 <button>Criar Quiz</button>
             </a>
         </div>
+        {% if error.is_some() %}
+            {% if error.unwrap() %}
+                <h1>sucesso</h1>
+            {% endif %}
+            {% if !error.unwrap() %}
+                <h1>falha</h1>
+            {% endif %}
+        {% endif %}
     </main>
-    {% if error.is_some() %}
-        {% if error.unwrap() %}
-            <h1>sucesso</h1>
-        {% endif %}
-        {% if !error.unwrap() %}
-            <h1>falha</h1>
-        {% endif %}
-    {% endif %}
 </body>
 </html>

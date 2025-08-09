@@ -1,15 +1,14 @@
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use axum::{
-    Json,
+    body::Body,
     extract::FromRequestParts,
-    http::{StatusCode, request::Parts},
+    http::{Response, StatusCode, header::LOCATION, request::Parts},
     response::IntoResponse,
 };
 use axum_extra::extract::CookieJar;
 use jsonwebtoken::{DecodingKey, EncodingKey, Header, Validation, decode, encode};
 use serde::{Deserialize, Serialize};
-use serde_json::json;
 
 use crate::configs;
 
@@ -79,13 +78,11 @@ pub enum Errors {
 
 impl IntoResponse for Errors {
     fn into_response(self) -> axum::response::Response {
-        (
-            StatusCode::UNAUTHORIZED,
-            Json(json!({
-                "error": "Token inválido".to_string()
-            })),
-        )
-            .into_response()
+        return Response::builder()
+            .status(StatusCode::SEE_OTHER)
+            .header(LOCATION, "/user/login")
+            .body(Body::empty())
+            .unwrap();
     }
 }
 
