@@ -31,6 +31,17 @@
                 <h1>Sucesso</h1>
             {% endif %}
         {% endif %}
+        <div>
+            {% for quiz in quizes %}
+                <div>
+                    <h1>{{ quiz.category }} - {{ quiz.difficulty }}</h1>
+                    <h2>{{ quiz.questions }} questions</h2>
+                    <button>
+                        <a href="/api/quiz/{{ quiz.id }}/delete">Apagar</a>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
     </main>
 </body>
 </html>
