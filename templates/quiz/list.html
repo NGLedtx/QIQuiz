@@ -25,10 +25,10 @@
         </div>
         {% if error.is_some() %}
             {% if error.unwrap() %}
-                <h1>sucesso</h1>
+                <h1>falha</h1>
             {% endif %}
             {% if !error.unwrap() %}
-                <h1>falha</h1>
+                <h1>Sucesso</h1>
             {% endif %}
         {% endif %}
     </main>
