@@ -3,15 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        header {
+    height: 7dvh;
+    display: flex;
+    background-color: #282828;
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.1);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5dvh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header a {
+    text-decoration: none;
+    color: whitesmoke; 
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+header button {
+    background-color: whitesmoke;
+    width: 10dvh;
+    height: 5dvh;
+    border: none;
+    border-radius: 0.3dvh;
+    cursor: pointer;
+    color: black;
+    font-size: 2.3dvh;
+}
+
+header button:hover {
+    background-color: rgb(186, 186, 186);
+}
+
+    </style>
 </head>
-<style>
-    header {
-        height: 7dvh;
-    }
-</style>
 <body>
     <header>
-        <h1>Header</h1>
+        <h1><a href="/quiz/list">QIQuiz</a></h1>
+        <div id="btlogin">
+            <a href="/api/user/logoff"><button>Sair</button></a>
+        </div>
     </header>
 </body>
 </html>
