@@ -13,21 +13,84 @@
     }
     main {
         height: 93dvh;
+        background-color: #282828;
+    }
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        height: 70%;
+        color: whitesmoke;
+    }
+    #container{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+        width: 30%;
+        height: 70%;
+        background-color: whitesmoke;
+        border: 1px solid whitesmoke;
+        border-radius: 1.2dvh;
+        
+    }
+    h2{
+        color: #000000;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2rem;
+    }
+    input{
+        width: 30dvh;
+        height: 5dvh;
+        font-size: 1rem;
+        border: none;
+        border-radius: 1.5dvh;
+        padding-left: 1dvh;
+        background-color: #282828;
+        color: whitesmoke;
+    }
+    input::placeholder{
+        padding-left: 0.3dvh;
+        color: rgb(180, 180, 180);
+    }
+    input:hover{
+        background-color: #1c1c1c;
+    }
+    p{
+        font-size: 1.2rem;
+        color: #000000;
+    }
+    button{
+        background-color: #282828;
+        width: 20dvh;
+        height: 4dvh;
+        border: none;
+        border-radius: 1dvh;
+        cursor: pointer;
+        color: whitesmoke;
+        font-size: 2.3dvh;
+    }
+    button:hover{
+        background-color: #1c1c1c;
     }
 </style>
 <body>
     {% include "header_off.html" %}
     <main>
         <form action="/api/user/login" method="get">
-            <div id="conatiner">
+            <div id="container">
+                <h2>QIQuiz</h2>
+                <p>Faça seu login e venha se aventurar!</p>
                 <div id="divname">
-                    <input type="text" name="user" placeholder="Digite seu nome...">
+                    <input required type="text" name="user" placeholder="😁 Digite seu nome...">
                 </div>
                 <div id="divsenha">
-                     <input type="password" name="password" placeholder="Digite uma senha">
+                    <input required type="password" name="password" placeholder="🔒 Digite uma senha...">
                 </div>
                 <div id="divbutton">
-                    <button type="submit">Entrar</button>
+                    <button type="submit">Vamos lá!</button>
                 </div>
             </div>
         </form>
