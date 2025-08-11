@@ -13,32 +13,106 @@
     }
     main {
         height: 93dvh;
+        background-color: #282828;
+    }
+    #container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50%;
+    }
+    #btncreate{
+        width: 50dvh;
+        height: 15dvh;
+        border: none;
+        background-color: whitesmoke;
+        border-radius: 1dvh;
+        cursor: pointer;
+        font-size: 2rem;
+    }
+    span{
+        text-align: center;
+        color: whitesmoke;
+    }
+    #message{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .spacecards{
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 2dvh;
+    }
+    .cardquiz{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: start;
+        border: 1px solid whitesmoke;
+        background-color: whitesmoke;
+        color: #282828;
+        border-radius: 1dvh;
+        padding-left: 1.2dvh ;
+    }
+    .contentcard{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        font-size: 1.3rem;
+    }
+    .divbtndel{
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        padding-left: 1.2dvh;
+        padding-top: 1dvh;
+    }
+    #btndel{
+        width: 5dvh;
+        height: 5dvh;
+        background-color: rgb(204, 60, 60);
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 1dvh;
+    }
+    a{
+      text-decoration: none;  
     }
 </style>
 <body>
     {% include "header_on.html" %}
     <main>
-        <div>
-            <a href="/quiz/create">
-                <button>Criar Quiz</button>
-            </a>
+        <div id="container">
+            <div id="divcreate">
+                 <a href="/quiz/create"> <button id="btncreate">+ Adicionar um Quiz</button> </a>
+            </div>
         </div>
-        {% if error.is_some() %}
+        <div id="message">
+            {% if error.is_some() %}
             {% if error.unwrap() %}
-                <h1>falha</h1>
+                <span>Não foi posível adicionar um novo Quiz</span>
             {% endif %}
             {% if !error.unwrap() %}
-                <h1>Sucesso</h1>
+                <span>Quiz adicionado com sucesso !</span>
             {% endif %}
         {% endif %}
-        <div>
+        </div>
+        <div class="spacecards">
             {% for quiz in quizes %}
-                <div>
-                    <h1>{{ quiz.category }} - {{ quiz.difficulty }}</h1>
-                    <h2>{{ quiz.questions }} questions</h2>
-                    <button>
-                        <a href="/quiz/{{ quiz.id }}/delete">Apagar</a>
-                    </button>
+                <div class="cardquiz">
+                    <div class="contentcard">
+                        <p>Tema: {{ quiz.category }}</p> 
+                        <p>Dificuldade: {{ quiz.difficulty }}</p>
+                        <p>Número de questões: {{ quiz.questions }} questions</p>
+                    </div>
+                    <div class="divbtndel">
+                        <button id="btndel"><a href="/quiz/{{ quiz.id }}/delete">🗑️</a></button>
+                    </div>
                 </div>
             {% endfor %}
         </div>
