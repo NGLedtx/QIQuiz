@@ -4,6 +4,7 @@ use axum::{
     extract::State,
     http::{Response, StatusCode, header::LOCATION},
 };
+use rand::{rng, seq::SliceRandom};
 use sea_orm::{
     ActiveValue::{NotSet, Set},
     ColumnTrait, Condition, EntityTrait, PaginatorTrait, QueryFilter, TransactionTrait,
@@ -227,6 +228,8 @@ pub async fn create(
             });
         });
     }
+
+    alternative_models.shuffle(&mut rng());
 
     let Ok(_) = alternative::Entity::insert_many(alternative_models)
         .exec(&txn)
