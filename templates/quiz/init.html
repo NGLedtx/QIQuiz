@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem dos Quizes</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    main {
+        height: 93dvh;
+    }
+</style>
+<body>
+    {% include "header_off.html" %}
+    <main>
+        <div>
+            {% for quiz in quizes %}
+                <div>
+                    <h1>{{ quiz.category }} - {{ quiz.difficulty }}</h1>
+                    <h2>{{ quiz.questions }} questions</h2>
+                    <button>
+                        <a href="/quiz/{{ quiz.id }}/play">Jogar</a>
+                    </button>
+                    <button>
+                        <a href="/quiz/{{ quiz.id }}/rank">Rank</a>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

@@ -65,6 +65,7 @@ pub async fn create(
     let Ok(quiz_exists) = quiz::Entity::find()
         .filter(
             Condition::all()
+                .add(quiz::Column::Id.eq(form.questions))
                 .add(quiz::Column::IdDifficulty.eq(form.id_difficult))
                 .add(quiz::Column::IdCategory.eq(form.id_category)),
         )
@@ -86,7 +87,7 @@ pub async fn create(
             .unwrap();
     }
 
-    let Ok(difficult_exists) = difficulty::Entity::find_by_id(form.id_difficult)
+    let Ok(difficulty_exists) = difficulty::Entity::find_by_id(form.id_difficult)
         .one(db)
         .await
     else {
@@ -97,7 +98,7 @@ pub async fn create(
             .unwrap();
     };
 
-    let Some(difficult) = difficult_exists else {
+    let Some(difficulty) = difficulty_exists else {
         return Response::builder()
             .status(StatusCode::SEE_OTHER)
             .header(LOCATION, "/quiz/list?error=true")
@@ -127,7 +128,7 @@ pub async fn create(
     let Ok(questions) = http_client
         .get(format!(
             "https://opentdb.com/api.php?amount={}&category={}&difficulty={}&type=multiple",
-            form.questions, form.id_category, difficult.name
+            form.questions, form.id_category, difficulty.name
         ))
         .send()
         .await

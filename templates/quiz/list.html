@@ -111,11 +111,8 @@
                         <p>Número de questões: {{ quiz.questions }} questions</p>
                     </div>
                     <div class="divbtndel">
-                        <button id="btndel"><a href="/quiz/{{ quiz.id }}/delete">🗑️</a></button>
+                        <button id="btndel"><a href="/api/quiz/{{ quiz.id }}/delete">🗑️</a></button>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
     </main>
 </body>
 </html>
