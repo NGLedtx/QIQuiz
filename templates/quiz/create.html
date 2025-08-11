@@ -1,37 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Quiz</title>
-</head>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Criar Quiz</title>
+  <style>
     * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     main {
-        height: 93dvh;
+      height: 93dvh;
+      background-color: #282828;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-</style>
+
+    form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #container {
+      background-color: whitesmoke;
+      border-radius: 1dvh;
+      width: 35%;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      height: 40px;
+      background-color: #282828;
+      color: whitesmoke;
+      border: none;
+      border-radius: 0.6dvh;
+      padding: 0 10px;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    input[type="number"]::placeholder {
+      color: rgb(186, 186, 186);
+    }
+
+    input:hover,
+    select:hover {
+      background-color: #1c1c1c;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
 <body>
-    {% include "header_on.html" %}
-    <main>
-        <form action="/api/quiz/create" method="post">
-            <input type="number" name="questions">
-            <select name="id_difficult">
-                {% for difficult in difficults %}
-                    <option value={{ difficult.id }}>{{ difficult.name }}</option>
-                {% endfor %}
-            </select>
-            <select name="id_category">
-                {% for category in categories %}
-                    <option value={{ category.id }}>{{ category.name }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit">Submit</button>
-        </form>
-    </main>
+  {% include "header_on.html" %}
+  <main>
+    <form action="/api/quiz/create" method="post">
+      <div id="container">
+        <h1>Adicionar um novo Quiz</h1>
+
+        <div class="form-group">
+          <label for="numberquest">Número de Questões:</label>
+          <input
+            type="number"
+            name="questions"
+            id="numberquest"
+            title="Digite o número de perguntas para o quiz"
+            placeholder="Ex: 10"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="difficult">Dificuldade:</label>
+          <select name="id_difficult" id="difficult" title="Selecione o nível de dificuldade">
+            {% for difficult in difficults %}
+            <option value="{{ difficult.id }}">{{ difficult.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="selectcategory">Categoria:</label>
+          <select name="id_category" id="selectcategory" title="Selecione o tema do Quiz">
+            {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit">Enviar</button>
+      </div>
+    </form>
+  </main>
 </body>
 </html>
