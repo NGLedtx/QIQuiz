@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    main {
+        height: 93dvh;
+    }
+</style>
+<body>
+    {% include "header_off.html" %}
+    <main>
+        <div>
+            {% for rank in ranks %}
+                <h1>{{ rank.position }} - {{ rank.questions }} questions - {{ rank.name }} - {{ rank.time }}</h1>
+            {% endfor %}
+            {% for i in 0..(10 - ranks.len()) %}
+                <h1>{{ ranks.len() + 1 + i }} - ------------------------------------</h1>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
