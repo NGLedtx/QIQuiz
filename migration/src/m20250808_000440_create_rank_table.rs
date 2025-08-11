@@ -20,6 +20,7 @@ impl MigrationTrait for Migration {
                             .not_null()
                             .primary_key(),
                     )
+                    .col(ColumnDef::new(Rank::Name).string_len(30).not_null())
                     .col(ColumnDef::new(Rank::Time).time().not_null())
                     .col(
                         ColumnDef::new(Rank::Questions)
@@ -50,6 +51,7 @@ impl MigrationTrait for Migration {
 enum Rank {
     Table,
     Id,
+    Name,
     Time,
     Questions,
     IdQuiz,
