@@ -10,25 +10,95 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body{
+        background-color: #282828;
     }
     main {
         height: 93dvh;
+    }
+    a{
+        text-decoration: none;
+        color: whitesmoke;
+    }
+    .quizlist{
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding-left: 3dvh;
+        padding-top: 5dvh;
+    }
+    .quiz-card{
+        max-width: 50dvh;
+        height: 17dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: whitesmoke;
+        color: #282828;
+        font-family: 1.3rem;
+        border-radius: 1dvh;
+    }
+    .content-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
+    #btnplay{
+        width: 20dvh;
+        height: 5dvh;
+        background-color: rgb(36, 233, 18);
+        color: whitesmoke;
+        border: none;
+        border-radius: 1dvh;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+    #btnplay:hover{
+        background-color: rgb(16, 193, 0);
+    }
+    #btnrank{
+        width: 5dvh;
+        height: 5dvh;
+        border-radius: 1dvh;
+        background-color: rgb(198, 198, 0);
+        border: none;
+        font-size: 1.2rem;
+    }
+    #btnrank:hover{
+        background-color: rgb(153, 153, 0);
+    }
+    #buttons-card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 2dvh;
     }
 </style>
 <body>
     {% include "header_off.html" %}
     <main>
-        <div>
+        <div class="quizlist">
             {% for quiz in quizes %}
-                <div>
-                    <h1>{{ quiz.category }} - {{ quiz.difficulty }}</h1>
-                    <h2>{{ quiz.questions }} questions</h2>
-                    <button>
-                        <a href="/quiz/{{ quiz.id }}/play">Jogar</a>
-                    </button>
-                    <button>
-                        <a href="/quiz/{{ quiz.id }}/rank">Rank</a>
-                    </button>
+                <div class="quiz-card">
+                    <div class="content-card">
+                        <p><b>Tema: </b>{{ quiz.category }}</p>
+                        <p><b>Dificuldade: </b> {{ quiz.difficulty }}</p>
+                        <p><b>Número de questões: </b> {{ quiz.questions }} questions</p>
+                    </div>
+                    <div class="buttons-card">
+                        <button id="btnplay" title="Clique aqui para começar esse Quiz">
+                            <a href="/quiz/{{ quiz.id }}/play">🎮 Jogar !</a>
+                        </button>
+                        <button id="btnrank" title="Clique aqui para ver o ranque dos melhores">
+                            <a href="/quiz/{{ quiz.id }}/rank">🏆</a>
+                        </button>
+                    </div>
                 </div>
             {% endfor %}
         </div>
