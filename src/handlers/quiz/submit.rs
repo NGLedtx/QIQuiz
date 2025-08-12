@@ -13,8 +13,8 @@ use axum::{
 use chrono::NaiveTime;
 use sea_orm::{
     ActiveValue::{NotSet, Set},
-    ColumnTrait, Condition, ConnectionTrait, EntityTrait, FromQueryResult, JoinType, Order,
-    QueryFilter, QueryOrder, QuerySelect, QueryTrait, RelationTrait,
+    ColumnTrait, Condition, EntityTrait, FromQueryResult, JoinType, Order, QueryFilter, QueryOrder,
+    QuerySelect, RelationTrait,
 };
 
 use crate::{
