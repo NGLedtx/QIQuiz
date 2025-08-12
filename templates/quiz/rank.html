@@ -12,19 +12,50 @@
         box-sizing: border-box;
     }
     main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         height: 93dvh;
+        background-color: #282828;
+    }
+    .container{
+        width: 50%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: whitesmoke;
+        color: #282828;
+        border-radius: 1dvh;
+    }
+    .contentrank{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #titlerank{
+        color: whitesmoke;
+        font-size: 3rem;
+    }
+    h1{
+        font-size: 2.4rem;
     }
 </style>
 <body>
     {% include "header_off.html" %}
     <main>
-        <div>
+        <h2 id="titlerank">Ranking dos melhores 🏆</h2>
+        <div class="container">
+            <div class="contentrank">
             {% for rank in ranks %}
                 <h1>{{ rank.position }} - {{ rank.questions }} questions - {{ rank.name }} - {{ rank.time }}</h1>
             {% endfor %}
             {% for i in 0..(10 - ranks.len()) %}
                 <h1>{{ ranks.len() + 1 + i }} - ------------------------------------</h1>
             {% endfor %}
+        </div>
         </div>
     </main>
 </body>
