@@ -4,36 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        main {
+            height: 93dvh;
+            background-color: #282828;
+        }
+        form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .container {
+            width: 50%;
+            height: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .inner {
+            text-align: center;
+            color: #282828;
+            background-color: whitesmoke;
+            border-radius: 1rem;
+            padding: 5dvh;
+        }
+        .btnpages{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .nickrank{
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        #inputnick{
+            border: none;
+            background-color: whitesmoke;
+            width: 30dvh;
+            height: 5dvh;
+            border-radius: 1dvh;
+            padding-left: 1dvh;
+            color: #282828;
+            font-size: 1.2rem;
+        }
+        select{
+            width: 30dvh;
+            height: 5dvh;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 1dvh;
+            color: whitesmoke;
+            background-color: #282828;
+            margin-top: 2dvh;
+        }
+        #ant, #prox{
+            width: 10dvh;
+            height: 10dvh;
+            font-size: 2rem;
+            border: none;
+            background-color: whitesmoke;
+            margin: 5dvh;
+            border-radius: 1dvh;
+            cursor: pointer;
+            color: #282828;
+        }
+        #ant:hover , #prox:hover{
+            background-color: rgb(185, 185, 185);
+        }
+        .btnarrows{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        #btnsubmit{
+            border: none;
+            border-radius: 1dvh;
+            color: whitesmoke;
+            background-color: rgb(16, 193, 0);
+            width: 25dvh;
+            height: 5dvh;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        #btnsubmit:hover{
+            background-color: rgb(15, 159, 2);
+        }
+    </style>
 </head>
-<style>
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    main {
-        height: 93dvh;
-        background-color: #282828;
-    }
-</style>
 <body>
     {% include "header_off.html" %}
     <main>
         <form id="form" action="/api/quiz/submit" method="post">
-            <input type="text" name="name">
+            <div class="nickrank">
+                <input type="text" name="name" id="inputnick" placeholder="😁Digite seu nick...">
+            </div>
             {% for question in questions %}
-                <div style="display: none;">
-                    <h1>{{ question.text }}</h1>
-                    <select name="{{ question.id }}">
-                        {% for alternative in question.alternatives %}
-                        <option value="{{ alternative.id }}">{{ alternative.text }}</option>
-                        {% endfor %}
-                    </select>
+                <div class="container" style="display: none;">
+                    <div class="inner">
+                        <h1>{{ question.text }}</h1>
+                        <select name="{{ question.id }}">
+                            {% for alternative in question.alternatives %}
+                            <option value="{{ alternative.id }}">{{ alternative.text }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
             {% endfor %}
-            <button id="ant">Anterior</button>
-            <button id="prox">Próximo</button>
-            <button type="submit">Submit</button>
+            <div class="btnpages">
+                <div class="btnarrows">
+                    <button title="Voltar" id="ant">⭠</button>
+                    <button title="Próximo" id="prox">⭢</button>
+                </div>
+                <button type="submit" id="btnsubmit">Finalizar</button>
+            </div>
         </form>
     </main>
 </body>
@@ -48,26 +142,22 @@
 
     ant.addEventListener("click", e => {
         e.preventDefault();
-
         if(index == 1) {
             return;
         }
-
         form.children[index].style.display = "none";
         index -= 1;
         form.children[index].style.display = "block"
-    })
+    });
 
     prox.addEventListener("click", e => {
         e.preventDefault();
-
         if(index == form.children.length - 4) {
             return;
         }
-
         form.children[index].style.display = "none";
         index += 1;
         form.children[index].style.display = "block"
-    })
+    });
 </script>
 </html>
