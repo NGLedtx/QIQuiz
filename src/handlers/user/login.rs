@@ -27,7 +27,7 @@ pub async fn login(form: Form<Payload>) -> Response {
             .unwrap();
     }
 
-    let token = JwtClaims::new(true).gen_token();
+    let token = JwtClaims::new(true, None).gen_token();
 
     let cookie = Cookie::build(("token", token)).http_only(true).path("/");
 

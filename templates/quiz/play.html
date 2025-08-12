@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    main {
+        height: 93dvh;
+        background-color: #282828;
+    }
+</style>
+<body>
+    {% include "header_off.html" %}
+    <main>
+        <form id="form" action="/api/quiz/submit" method="post">
+            <input type="text" name="name">
+            {% for question in questions %}
+                <div style="display: none;">
+                    <h1>{{ question.text }}</h1>
+                    <select name="{{ question.id }}">
+                        {% for alternative in question.alternatives %}
+                        <option value="{{ alternative.id }}">{{ alternative.text }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endfor %}
+            <button id="ant">Anterior</button>
+            <button id="prox">Próximo</button>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+</body>
+<script>
+    let form = document.getElementById("form");
+    let ant = document.getElementById("ant");
+    let prox = document.getElementById("prox");
+    let index = 1;
+    let questions = form.children.length;
+
+    form.children[index].style.display = "block";
+
+    ant.addEventListener("click", e => {
+        e.preventDefault();
+
+        if(index == 1) {
+            return;
+        }
+
+        form.children[index].style.display = "none";
+        index -= 1;
+        form.children[index].style.display = "block"
+    })
+
+    prox.addEventListener("click", e => {
+        e.preventDefault();
+
+        if(index == form.children.length - 4) {
+            return;
+        }
+
+        form.children[index].style.display = "none";
+        index += 1;
+        form.children[index].style.display = "block"
+    })
+</script>
+</html>

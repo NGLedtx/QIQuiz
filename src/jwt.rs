@@ -15,18 +15,20 @@ use crate::configs;
 #[derive(Serialize, Deserialize, Clone)]
 pub struct JwtClaims {
     pub is_admin: bool,
+    pub quiz_id: Option<i32>,
     pub created_at: usize,
     exp: usize,
 }
 
 impl JwtClaims {
-    pub fn new(is_admin: bool) -> Self {
+    pub fn new(is_admin: bool, quiz_id: Option<i32>) -> Self {
         let created_at = Self::get_created_at();
         let expiration_time = Self::get_expiration_token();
 
         JwtClaims {
             is_admin,
             created_at,
+            quiz_id,
             exp: expiration_time,
         }
     }
