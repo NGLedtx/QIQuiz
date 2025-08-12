@@ -10,6 +10,7 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     main {
         height: 93dvh;
@@ -45,9 +46,12 @@
         justify-content: center;
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
-        padding: 2dvh;
+        padding-left: 3dvh;
+        padding-top: 2dvh;
     }
     .cardquiz{
+        max-width: 50dvh;
+        height: 17dvh;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -75,10 +79,13 @@
     #btndel{
         width: 5dvh;
         height: 5dvh;
-        background-color: rgb(204, 60, 60);
+        background-color: rgb(139, 0, 0);
         font-size: 1.2rem;
         border: none;
         border-radius: 1dvh;
+    }
+    #btndel:hover{
+        background-color: rgb(69, 0, 0);
     }
     a{
       text-decoration: none;  
@@ -106,9 +113,9 @@
             {% for quiz in quizes %}
                 <div class="cardquiz">
                     <div class="contentcard">
-                        <p>Tema: {{ quiz.category }}</p> 
-                        <p>Dificuldade: {{ quiz.difficulty }}</p>
-                        <p>Número de questões: {{ quiz.questions }} questions</p>
+                        <p><b>Tema: </b> {{ quiz.category }}</p> 
+                        <p><b>Dificuldade: </b> {{ quiz.difficulty }}</p>
+                        <p><b>Número de questões: </b>{{ quiz.questions }} questions</p>
                     </div>
                     <div class="divbtndel">
                         <button id="btndel"><a href="/api/quiz/{{ quiz.id }}/delete">🗑️</a></button>
