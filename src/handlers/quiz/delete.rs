@@ -113,7 +113,7 @@ pub async fn delete(
 
     Response::builder()
         .status(StatusCode::SEE_OTHER)
-        .header(LOCATION, "/quiz/list?error=false")
+        .header(LOCATION, "/quiz/list")
         .body(Body::empty())
         .unwrap()
 }
