@@ -102,6 +102,9 @@
                 </div>
             {% endfor %}
         </div>
+        {% if quizes.len() == 0 %}
+            <h1 style="text-align: center; color: whitesmoke;">Nenhum quiz adicionado</h1>
+        {% endif %}
     </main>
 </body>
 </html>
